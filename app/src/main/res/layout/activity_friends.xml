@@ -10,4 +10,72 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.enrro.narcissismreloaded.Friends">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:id="@+id/editText3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Hobby"
+        android:ems="10"
+        android:layout_below="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
+        android:layout_marginTop="22dp"
+        android:id="@+id/editText4" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button6"
+        android:layout_alignStart="@+id/button6"
+        android:layout_marginTop="33dp"
+        android:onClick="onClickSearch"
+        android:id="@+id/button7" />
+
+    <Button
+        android:text="Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button7"
+        android:layout_alignStart="@+id/button7"
+        android:layout_marginTop="33dp"
+        android:onClick="onClickDelete"
+        android:id="@+id/button8" />
+
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:id="@+id/button6"
+        android:layout_below="@+id/editText4"
+        android:onClick="onClickAdd"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Please input your name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_marginTop="26dp"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:text="Please input your hobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"
+        android:id="@+id/textView3" />
 </RelativeLayout>

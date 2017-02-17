@@ -12,13 +12,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "school.db";
+    public static final String DB_NAME = "homework.db";
     public static final int DB_VERSION = 1;
 
     public static final String TABLE_NAME = "student";
     public static final String ID_FIELD = "id";
     public static final String NAME_FIELD = "name";
 
+    public static final String OTHER_TABLE_NAME = "friend";
+    public static final String OTHER_ID_FIELD = "id";
+    public static final String OTHER_NAME_FIELD = "name";
+    public static final String OTHER_HOBBY_FIELD = "hobby";
 
     public DBHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -29,8 +33,10 @@ public class DBHelper extends SQLiteOpenHelper {
         // this is what should happen if the db didnt exists.
         // SQL for table creation
         String creation = "CREATE TABLE " + TABLE_NAME + "( " + ID_FIELD + " INTEGER PRIMARY KEY, " + NAME_FIELD + " TEXT)";
+        String creation1 = "CREATE TABLE " + OTHER_TABLE_NAME + "( " + OTHER_ID_FIELD + " INTEGER PRIMARY KEY, " + OTHER_NAME_FIELD + " TEXT, " + OTHER_HOBBY_FIELD + " TEXT)";
 
         sqLiteDatabase.execSQL(creation);
+        sqLiteDatabase.execSQL(creation1);
 
     }
 
@@ -53,27 +59,60 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, cv);
     }
 
-    public int delete(String name){
+    public void addFriend(String name, String hobby){
+
         SQLiteDatabase db = getWritableDatabase();
 
-        String clause = NAME_FIELD + " = ?";
+        ContentValues cv = new ContentValues();
+        cv.put(OTHER_NAME_FIELD, name);
+        cv.put(OTHER_HOBBY_FIELD, hobby);
+
+        db.insert(OTHER_TABLE_NAME, null, cv);
+    }
+
+    public int deleteFriend(String name){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String clause = OTHER_NAME_FIELD + " = ?";
         String[] args = {name};
 
-        return db.delete(TABLE_NAME, clause, args);
-
+        return db.delete(OTHER_TABLE_NAME, clause, args);
     }
-    public int find(String name){
+
+    public String find(String name){
         SQLiteDatabase db = getWritableDatabase();
 
         String selection = NAME_FIELD + " = ?";
         String[] args = {name};
 
         Cursor c = db.query(TABLE_NAME, null, selection, args, null, null, null, null);
-        int result = -1;
+        String result = "";
 
 
         if (c.moveToFirst()){
-            result = c.getInt(0);
+            result = c.getString(1);
+        }
+
+
+        return result;
+    }
+
+
+    //recieves the name of the table and the name of the persona that you are looking for.
+    //also recieves the column number from which give the resulting string
+    //example. column == 1 then once its found the value of the name it gives back the second column
+    public String find(String name, String table, int column){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String selection = NAME_FIELD + " = ?";
+        String[] args = {name};
+
+        Cursor c = db.query(table, null, selection, args, null, null, null, null);
+        String result = "";
+
+
+        if (c.moveToFirst()){
+            result = c.getString(column);
         }
 
 
