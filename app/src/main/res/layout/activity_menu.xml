@@ -10,4 +10,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.enrro.narcissismreloaded.MenuActivity">
 
+    <TextView
+        android:text="toBePopullated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView" />
+
+    <Button
+        android:text="My Hobbies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="61dp"
+        android:onClick="goToHobbies"
+        android:id="@+id/button3" />
+
+    <Button
+        android:text="My friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/button3"
+        android:onClick="goToFriends"
+        android:id="@+id/button4" />
 </RelativeLayout>
